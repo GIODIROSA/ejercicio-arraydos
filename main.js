@@ -62,12 +62,17 @@ console.log(radiologia);
 conveniente, la lista de consultas médicas de Dental. Sin embargo, debe hacerlo separando por
 un guión cada dato desplegado y cada fila de información debe estar separada por un párrafo.*/ 
 
+dental.forEach(function(paci){
+    let consultaDental= `<p>${paci.hora}-${paci.paciente}-${paci.rut}-${paci.prevision}</p>`;
+    document.write(`<p>${consultaDental}</p>`);
 
-let infoPaciente = dental.reduce(function(acumulador,paci){
-    return `${acumulador}${paci.hora}-${paci.paciente}-${paci.rut}-${paci.prevision}</br>`;
-},"");
+});
 
-document.write(infoPaciente);
+// let infoPaciente = dental.reduce(function(acumulador,paci){
+//     return `${acumulador}${paci.hora}-${paci.paciente}-${paci.rut}-${paci.prevision}</br>`;
+// },"");
+
+// document.write(infoPaciente);
 
 /*4. Imprimir un listado total de todos los pacientes que se atendieron en el centro médico. Para ésto,
 deberá unir todos los nombres de pacientes e imprimir uno por cada párrafo.
@@ -76,7 +81,7 @@ deberá unir todos los nombres de pacientes e imprimir uno por cada párrafo.
 
 radiologia.forEach(function(pacienteRadio){
     let listadoPacienteRadio= pacienteRadio.paciente;
-    document.write(`${listadoPacienteRadio}</br></br>`);
+    document.write(`<p>${listadoPacienteRadio}</p>`);
 
 });
 
@@ -87,7 +92,7 @@ traumatologia.forEach(function (pacienteTrauma) {
     
     dental.forEach(function (pacienteDental) {
         let listadoPacienteDental = pacienteDental.paciente;
-        document.write(`${listadoPacienteDental}</br></br>`);
+        document.write(`<p>${listadoPacienteDental}</p>`);
     });
 
 
@@ -97,20 +102,13 @@ dicha consulta, separados por punto y coma */
 
 dental=dental.map(function(previ){
     if(previ.prevision === "FONASA"){
-        previ.prevision= (`ISAPRE; ${previ.paciente}`);
+        previ.prevision= (` ISAPRE; ${previ.paciente} `);
     } else if(previ.prevision === "ISAPRE"){
-previ.prevision= (`FONASA; ${previ.paciente}`);
+previ.prevision= (` FONASA; ${previ.paciente} `);
     }
     return previ.prevision;
 });
-console.log(dental);
-
-
-
-
-
-
-
+document.write(dental);
 
 
 
